@@ -1,5 +1,7 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
+import New from '../../../assets/images/new.png'
+import Show from '../../../assets/images/show.jpeg'
 const Options = props =>{
 
 return(
@@ -10,7 +12,7 @@ return(
           <div class="card-divider">
             <h4>See Your Data</h4>
           </div>
-          <img src="assets/img/show.jpg" />
+          <img src={New} />
           <div class="card-section">
             <p>Visualize your data over time and compared to pollen counts</p>
           </div>
@@ -19,9 +21,9 @@ return(
       <div class="cell">
         <div class="card">
           <div class="card-divider">
-            <h4>Enter Symptoms</h4>
+            <h4><Link to="/report">Enter Symptoms</Link></h4>
           </div>
-          <img src="assets/img/generic/new.png"/>
+          <img src={Show}/>
           <div class="card-section">
             <p>Enter today's symptoms</p>
           </div>

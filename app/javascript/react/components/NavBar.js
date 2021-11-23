@@ -1,7 +1,7 @@
 import React from 'react'
-import  {Link } from 'react-router-dom'
+import  { Link, Switch, Route } from 'react-router-dom'
 import Options from './Options'
-
+import SymptomReportForm from './SymptomReportForm'
 const NavBar = props => {
   return(
     <div>
@@ -18,7 +18,10 @@ const NavBar = props => {
         </div>
       </div>
       <div>
-        <Options />
+        <Switch>
+          <Route exact path="/" component = {Options} />
+          <Route exact path="/report" component = {SymptomReportForm} />
+        </Switch>
       </div>
     </div>
   )
