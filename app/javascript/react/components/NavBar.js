@@ -1,5 +1,6 @@
 import React from 'react'
 import  {Link } from 'react-router-dom'
+import Options from './Options'
 
 const NavBar = props => {
   return(
@@ -16,8 +17,10 @@ const NavBar = props => {
           <a href ='/users/sign_out' data-method='delete'> Sign Out</a>
         </div>
       </div>
+      <div>
+        <Options />
+      </div>
     </div>
-      
   )
 }
 
