@@ -3,6 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  validates :zip_code, length: { is: 5 }
+         
+  belongs_to :zip_code
 end
