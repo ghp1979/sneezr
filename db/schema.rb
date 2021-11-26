@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_22_201726) do
+ActiveRecord::Schema.define(version: 2021_11_24_201112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,22 @@ ActiveRecord::Schema.define(version: 2021_11_22_201726) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_symptom_reports_on_user_id"
+    
+  create_table "allergen_reports", force: :cascade do |t|
+    t.integer "tree_value", null: false
+    t.string "tree_category", null: false
+    t.integer "grass_value", null: false
+    t.string "grass_category", null: false
+    t.integer "ragweed_value", null: false
+    t.string "ragweed_category", null: false
+    t.integer "mold_value", null: false
+    t.string "mold_category", null: false
+    t.integer "dust_dander_value", null: false
+    t.string "dust_dander_category", null: false
+    t.bigint "zip_code_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["zip_code_id"], name: "index_allergen_reports_on_zip_code_id"
   end
 
   create_table "users", force: :cascade do |t|
