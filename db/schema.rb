@@ -15,16 +15,6 @@ ActiveRecord::Schema.define(version: 2021_11_24_201112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "symptom_reports", force: :cascade do |t|
-    t.integer "sneezing", null: false
-    t.integer "congestion", null: false
-    t.integer "runny_nose", null: false
-    t.integer "itchy_nose", null: false
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_symptom_reports_on_user_id"
-    
   create_table "allergen_reports", force: :cascade do |t|
     t.integer "tree_value", null: false
     t.string "tree_category", null: false
@@ -40,6 +30,17 @@ ActiveRecord::Schema.define(version: 2021_11_24_201112) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["zip_code_id"], name: "index_allergen_reports_on_zip_code_id"
+  end
+
+  create_table "symptom_reports", force: :cascade do |t|
+    t.integer "sneezing", null: false
+    t.integer "congestion", null: false
+    t.integer "runny_nose", null: false
+    t.integer "itchy_nose", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_symptom_reports_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

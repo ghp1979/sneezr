@@ -2,6 +2,8 @@ import React from 'react'
 import  { Link, Switch, Route } from 'react-router-dom'
 import Options from './Options'
 import SymptomReportForm from './SymptomReportForm'
+import ReportAdded from './ReportAdded'
+
 const NavBar = props => {
   return(
     <div>
@@ -21,6 +23,7 @@ const NavBar = props => {
         <Switch>
           <Route exact path="/" component = {Options} />
           <Route exact path="/report" component = {SymptomReportForm} />
+          <Route exact path="/reportadded" component = {ReportAdded} />
         </Switch>
       </div>
     </div>

@@ -12,6 +12,8 @@ const SymptomReportForm = props => {
 
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
+  const [response, setResponse] = useState("")
+
   const handleInputChange = event =>{
     setReport({
       ...report,
@@ -34,28 +36,34 @@ const SymptomReportForm = props => {
         credentials: 'same-origin',
         body: JSON.stringify({report: report})
       })
-      if(!response.ok) {
-        throw new Error(`${response.status} (${response.statusText})`)
-      }
-      else{
-        setShouldRedirect(true)
-      }
-    } catch (error) {
+     if(!response.ok) {
+      const errorMessage = `${response.status}: (${response.statusText})`
+      const error = new Error(errorMessage)
+      throw(error)
+    }    
+    const parsedResponse = await response.json()
+    if(parsedResponse.body = "Report already created for today"){
+      setResponse(parsedResponse.body)
+    } else {
+    setShouldRedirect(true) }
+  } catch (error) {
       console.error(error)
+      if(error.message === "401: (Unauthorized)"){
+        setResponse("You must log in before submitting report")
+      }
     }
   }
 
   if(shouldRedirect) {
-    debugger
     return(<div>
-            <Redirect to="/" />
+            <Redirect to="/reportadded" />
           </div>)
-          debugger
   }
 
   return(
    <div className="grid-container">
-      <h3>Enter your symptoms</h3> <br/>
+      <h3>Enter your symptoms<br/>
+      {response}</h3>
       <div className="cell grid-x margin-x">
         <form onSubmit={handleSubmit}>
           <label>
