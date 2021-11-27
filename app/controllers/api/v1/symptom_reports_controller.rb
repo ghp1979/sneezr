@@ -3,16 +3,19 @@ class Api::V1::SymptomReportsController < ApplicationController
   before_action :authenticate_user!
   def create
     report = SymptomReport.new(report_params)
-    report.user = current_user
-    recent = SymptomReport.order(:created_at).last
-    if Date.today === recent.created_at.to_date
-      render json: { response: "Report already created for today"}
-    elsif report.save
-      render json: { response: "Report added successfully" }
-    else
+    latest = current_user.symptom_reports.last
+    report.user = current_user  
+    if latest === nil
+      if report.save
+        reply = "Report added successfully" 
+      end
+    elsif Date.today === latest.created_at.to_date
+      reply ="Report already created for today"
+    else 
       errors = report.errors.full_messages.to_sentence
       render json: { response: errors }
     end
+    render json: { response: reply }
   end
   
   

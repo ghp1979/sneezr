@@ -42,8 +42,8 @@ const SymptomReportForm = props => {
       throw(error)
     }    
     const parsedResponse = await response.json()
-    if(parsedResponse.body = "Report already created for today"){
-      setResponse(parsedResponse.body)
+    if(parsedResponse.response === "Report already created for today"){
+      setResponse(parsedResponse.response)
     } else {
     setShouldRedirect(true) }
   } catch (error) {
