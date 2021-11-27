@@ -4,5 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :symptom_reports         
-  validates :zip_code, length: { is: 5 }
+  belongs_to :zip_code
 end
