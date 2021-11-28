@@ -10,7 +10,7 @@ return(
       <div className="cell">
         <div className="card">
           <div className="card-divider">
-            <h4>See Your Data</h4>
+            <h4><Link to="/table">See Your Data</Link></h4>
           </div>
           <img src={New} />
           <div className="card-section">

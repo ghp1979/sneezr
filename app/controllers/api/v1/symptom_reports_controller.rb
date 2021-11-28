@@ -1,6 +1,11 @@
 class Api::V1::SymptomReportsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
   before_action :authenticate_user!
+  
+  def index
+    render json: current_user.symptom_reports.all
+  end
+
   def create
     report = SymptomReport.new(report_params)
     latest = current_user.symptom_reports.last
