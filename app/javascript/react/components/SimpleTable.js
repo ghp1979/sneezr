@@ -5,9 +5,9 @@ import FetchTool from "./FetchTool";
 
 const SimpleTable = props =>{
 
-  const [symptomData, setSymptomData] = useState([])
+  const [dataObject, setDataObject] = useState({})
 
-  const fetchSymptom = async () => {
+  const fetchDataObject = async () => {
     try { 
       const response = await fetch(`/api/v1/symptom_reports`, {
         credentials: 'same-origin'
@@ -18,36 +18,14 @@ const SimpleTable = props =>{
       throw(error)
     }    
     const responseBody = await response.json()
-    setSymptomData(responseBody.symptom_reports)
+    setDataObject(responseBody)
     } catch(err) {
     console.log(err)
     }
   }
   useEffect(() => {
-    fetchSymptom()
+    fetchDataObject()
   }, [])
-  const [allergenData, setAllergenData] = useState([])
-
-  const fetchAllergen = async () => {
-    try { 
-      const response = await fetch(`/api/v1/allergen_reports`, {
-        credentials: 'same-origin'
-      })
-     if(!response.ok) {
-      const errorMessage = `${response.status}: (${response.statusText})`
-      const error = new Error(errorMessage)
-      throw(error)
-    }    
-    const responseBody = await response.json()
-    setAllergenData(responseBody.allergen_reports)
-    } catch(err) {
-    console.log(err)
-    }
-  }
-  useEffect(() => {
-    fetchAllergen()
-  }, [])
-debugger
   return(
     <h1>Test</h1>
 //    <Chart
@@ -61,7 +39,7 @@ debugger
 //       { type: 'number', label: 'TNSS' },
 //       { type: 'number', label: 'Tree Pollen Level' },
 //       { type: 'string', label: 'Tree Pollen Intensity'},
-//       { type: 'numer', label: 'Grass Pollen Level' },
+//       { type: 'nubmer', label: 'Grass Pollen Level' },
 //       { type: 'string', label: 'Grass Pollen Intensity'},
 //       { type: 'number', label: 'Ragweed Pollen Level' },
 //       { type: 'string', label: 'Ragweed Pollen Intensity'},
