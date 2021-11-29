@@ -1,10 +1,12 @@
 import * as React from "react";
 import { useEffect, useState } from "react"
 import { Chart } from "react-google-charts"
+import PrepareTable from "./PrepareTable"
 
 const FullTable = props =>{
-
+  const [tableData, setTableData] = useState(["table"])
   const [dataObject, setDataObject] = useState({})
+  const [dataFetched, setDataFetched] = useState(false)
 
   const fetchDataObject = async () => {
     try { 
@@ -18,6 +20,7 @@ const FullTable = props =>{
     }    
     const responseBody = await response.json()
     setDataObject(responseBody)
+    setDataFetched(true)
     } catch(err) {
     console.log(err)
     }
@@ -26,48 +29,33 @@ const FullTable = props =>{
     fetchDataObject()
   }, [])
 debugger
-  return(
+  const prepareData = () =>{
+    return(
     <div>
+    <PrepareTable dataObject={dataObject} setDataObject={setDataObject}/>
+    </div>)
+  }
+ 
+  if((dataFetched == true) && (tableData[0] === "table")){
+    prepareData()
+  }
 
-    <h1>Test</h1>
-   <Chart
-  width={'auto'}
-  height={'auto'}
-  chartType="Table"
-  loader={<div>Loading Chart</div>}
-  data={[
-    [
-      { type: 'string', label: 'Date' },
-      { type: 'string', label: 'TNSS' },
-      { type: 'string', label: 'Tree Pollen Level' },
-      { type: 'string', label: 'Tree Pollen Intensity'},
-      { type: 'string', label: 'Grass Pollen Level' },
-      { type: 'string', label: 'Grass Pollen Intensity'},
-      { type: 'string', label: 'Ragweed Pollen Level' },
-      { type: 'string', label: 'Ragweed Pollen Intensity'},
-      { type: 'string', label: 'Mold Level' },
-      { type: 'string', label: 'Mold Intensity'},
-      { type: 'string', label: 'Dust and Dander Level' },
-      { type: 'string', label: 'Dust and Dander Intensity'},
-    ],
-    dataObject["date"],
-    dataObject["tnss"],
-    dataObject["tree_value"],
-    dataObject["tree_category"],
-    dataObject["grass_value"],
-    dataObject["grass_category"],
-    dataObject["ragweed_value"],
-    dataObject["ragweed_category"],
-    dataObject["mold_value"],
-    dataObject["mold_category"],
-    dataObject["dust_dander_value"],
-    dataObject["dust_dander_category"],
-  ]}
-  options={{
-    showRowNumber: false,
-  }}
-/>
-  </div>
-  )
+  // return(
+  //   <div>
+  //     <PrepareTable dataObject={dataObject} setDataObject={setDataObject}/>
+  //     <h1>Test</h1>
+  //     <Chart
+  //     width={'auto'}
+  //     height={'auto'}
+  //     chartType="Table"
+  //     loader={<div>Loading Chart</div>}
+  //     data={tableData}
+  //     options={{
+  //       showRowNumber: false,
+  //     }}
+  //     rootProps={{ 'data-testid': '1' }}
+  //   />
+  // </div>
+  // )
 }
 export default FullTable

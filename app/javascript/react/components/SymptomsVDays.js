@@ -29,21 +29,23 @@ const SymptomsVDays = props => {
     fetchDataObject()
   }, [])
 
-  const prepareData = (data) =>{
-    const days = data["date"]
-    const tnss = data["tnss"]
+  const prepareData = (sData) =>{
+    const days = sData["date"]
+    const tnss = sData["tnss"]
     let mappedData = days.map((date) =>{
       return [date, ""]
     })
     let i = 0
     mappedData.forEach((array) =>{
-      if(i <= mappedData.length){
+      if(i < mappedData.length){
         array[1] = tnss[i]
         i += 1
+      } else if(i = mappedData.length){
       } else {
         return(mappedData)
       }
     })
+    mappedData.unshift(["Date", "TNSS"])
     setChartData(mappedData)
   }
 
@@ -57,10 +59,7 @@ return(
   height={'75%'}
   chartType="ScatterChart"
   loader={<div>Loading Chart</div>}
-  data={[
-    ["Date", "TNSS"],
-    chartData,
-  ]}
+  data={chartData}
   options={{
     chart: {
       title:
