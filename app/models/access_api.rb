@@ -1,6 +1,4 @@
 require 'faraday'
-require 'json'
-require 'dotenv'
 require './config/environment'
 
 
