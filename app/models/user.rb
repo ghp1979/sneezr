@@ -4,5 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         belongs_to :zip_code
+  belongs_to :zip_code
+  has_many :symptom_reports         
 end

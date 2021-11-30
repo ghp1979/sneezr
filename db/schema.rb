@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 2021_11_24_204503) do
     t.index ["zip_code_id"], name: "index_allergen_reports_on_zip_code_id"
   end
 
+  create_table "symptom_reports", force: :cascade do |t|
+    t.integer "sneezing", null: false
+    t.integer "congestion", null: false
+    t.integer "runny_nose", null: false
+    t.integer "itchy_nose", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_symptom_reports_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
