@@ -9,8 +9,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :zip_code%><br />
-    <%= f.text_field :zip_code %>
+    <%= f.collection_select(:zip_code_id, ZipCode.all, :id, :zip_code) %>
   </div>
 
   <div class="field">
@@ -30,5 +29,6 @@
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+
 
 <%= render "devise/shared/links" %>

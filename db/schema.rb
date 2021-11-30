@@ -58,9 +58,10 @@ ActiveRecord::Schema.define(version: 2021_11_27_184221) do
   end
 
   create_table "zip_codes", force: :cascade do |t|
-    t.string "zip_code"
+    t.string "zip_code", limit: 5, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "users", "zip_codes"
 end
