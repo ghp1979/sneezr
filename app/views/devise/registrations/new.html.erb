@@ -7,7 +7,11 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-  
+
+  <div class="field">
+    <%= f.collection_select(:zip_code_id, ZipCode.all, :id, :zip_code) %>
+  </div>
+
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -25,5 +29,6 @@
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+
 
 <%= render "devise/shared/links" %>
