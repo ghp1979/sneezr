@@ -62,6 +62,38 @@ symptoms = SymptomReport.create([{
   user_id: 1,
   created_at: Date.new(2021, 11, 27)
 },
+{
+  sneezing: 3,
+  congestion: 3,
+  runny_nose: 3,
+  itchy_nose: 3,
+  user_id: 1,
+  created_at: Date.new(2021, 11, 28)
+},
+{
+  sneezing: 1,
+  congestion: 2,
+  runny_nose: 1,
+  itchy_nose: 2,
+  user_id: 1,
+  created_at: Date.new(2021, 11, 29)
+},
+{
+  sneezing: 0,
+  congestion: 1,
+  runny_nose: 1,
+  itchy_nose: 2,
+  user_id: 1,
+  created_at: Date.new(2021, 11, 30)
+},
+{
+  sneezing: 0,
+  congestion: 0,
+  runny_nose: 0,
+  itchy_nose: 1,
+  user_id: 1,
+  created_at: Date.new(2021, 12, 1)
+}
 
 ])
 
@@ -116,6 +148,58 @@ allergens = AllergenReport.create([{
   dust_dander_value: 0,
   dust_dander_category: "Low",
   created_at: Date.new(2021, 11, 27),
+  zip_code_id: 1
+},
+  {tree_value: 50,
+  tree_category: "Moderate",
+  grass_value: 0,
+  grass_category: "Low",
+  ragweed_value: 0,
+  ragweed_category: "Low",
+  mold_value: 0,
+  mold_category: "Low",
+  dust_dander_value: 0,
+  dust_dander_category: "Low",
+  created_at: Date.new(2021, 11, 28),
+  zip_code_id: 1
+},
+  {tree_value: 50,
+  tree_category: "Moderate",
+  grass_value: 0,
+  grass_category: "Low",
+  ragweed_value: 0,
+  ragweed_category: "Low",
+  mold_value: 0,
+  mold_category: "Low",
+  dust_dander_value: 0,
+  dust_dander_category: "Low",
+  created_at: Date.new(2021, 11, 29),
+  zip_code_id: 1
+},
+  {tree_value: 50,
+  tree_category: "Moderate",
+  grass_value: 0,
+  grass_category: "Low",
+  ragweed_value: 0,
+  ragweed_category: "Low",
+  mold_value: 0,
+  mold_category: "Low",
+  dust_dander_value: 0,
+  dust_dander_category: "Low",
+  created_at: Date.new(2021, 11, 30),
+  zip_code_id: 1
+},
+  {tree_value: 50,
+  tree_category: "Moderate",
+  grass_value: 0,
+  grass_category: "Low",
+  ragweed_value: 0,
+  ragweed_category: "Low",
+  mold_value: 0,
+  mold_category: "Low",
+  dust_dander_value: 0,
+  dust_dander_category: "Low",
+  created_at: Date.new(2021, 12, 1),
   zip_code_id: 1
 }
 ])
