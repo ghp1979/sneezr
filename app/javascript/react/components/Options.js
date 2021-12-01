@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import New from '../../../assets/images/new.png'
 import Show from '../../../assets/images/show.jpeg'
+import Folder from '../../../assets/images/folder.png'
+
 const Options = props =>{
 
 return(
@@ -10,7 +12,7 @@ return(
       <div className="cell">
         <div className="card">
           <div className="card-divider">
-            <h4>See Your Data</h4>
+            <h4><Link to="/data">See Your Data</Link></h4>
           </div>
           <img src={New} />
           <div className="card-section">
@@ -26,6 +28,17 @@ return(
           <img src={Show}/>
           <div className="card-section">
             <p>Enter today's symptoms</p>
+          </div>
+        </div>
+      </div>
+      <div className="cell">
+        <div className="card">
+          <div className="card-divider">
+            <h4>Further Information</h4>
+          </div>
+          <img src={Folder}/>
+          <div className="card-section">
+            <p>Links to further information</p>
           </div>
         </div>
       </div>

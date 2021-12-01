@@ -10,10 +10,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
-
+      t.belongs_to :zip_code, null: false
       ## Rememberable
       t.datetime :remember_created_at
-
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at

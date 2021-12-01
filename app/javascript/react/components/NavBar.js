@@ -3,6 +3,9 @@ import  { Link, Switch, Route } from 'react-router-dom'
 import Options from './Options'
 import SymptomReportForm from './SymptomReportForm'
 import ReportAdded from './ReportAdded'
+import DataContainer from './DataContainer'
+import SymptomsVDays from './SymptomsVDays'
+import FullTable from './FullTable'
 
 const NavBar = props => {
   return(
@@ -24,7 +27,10 @@ const NavBar = props => {
           <Route exact path="/" component = {Options} />
           <Route exact path="/report" component = {SymptomReportForm} />
           <Route exact path="/reportadded" component = {ReportAdded} />
-        </Switch>
+          <Route exact path="/data" component = {DataContainer} />
+          <Route exact path="/data/symptoms" component = {SymptomsVDays} />
+          <Route exact path="/data/table" component = {FullTable} />
+         </Switch>
       </div>
     </div>
   )

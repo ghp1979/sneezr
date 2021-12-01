@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 codes = ZipCode.create([
   { zip_code: "02108" },
   { zip_code: "02109" },
@@ -21,4 +22,184 @@ codes = ZipCode.create([
   { zip_code: "02145" },
   { zip_code: "02210" },
   { zip_code: "02215" },
+])
+
+users = User.create([{ 
+  email: "test@test.com",
+  password: "tester",
+  zip_code_id: 1
+}])
+
+symptoms = SymptomReport.create([{
+  sneezing: 0,
+  congestion: 1,
+  runny_nose: 3,
+  itchy_nose: 2,
+  user_id: 1,
+  created_at: Date.new(2021, 11, 24)
+},
+{
+  sneezing: 0,
+  congestion: 0,
+  runny_nose: 0,
+  itchy_nose: 0,
+  user_id: 1,
+  created_at: Date.new(2021, 11, 25)
+},
+{
+  sneezing: 0,
+  congestion: 1,
+  runny_nose: 3,
+  itchy_nose: 2,
+  user_id: 1,
+  created_at: Date.new(2021, 11, 26)
+},
+{
+  sneezing: 3,
+  congestion: 3,
+  runny_nose: 3,
+  itchy_nose: 3,
+  user_id: 1,
+  created_at: Date.new(2021, 11, 27)
+},
+{
+  sneezing: 3,
+  congestion: 3,
+  runny_nose: 3,
+  itchy_nose: 3,
+  user_id: 1,
+  created_at: Date.new(2021, 11, 28)
+},
+{
+  sneezing: 1,
+  congestion: 2,
+  runny_nose: 1,
+  itchy_nose: 2,
+  user_id: 1,
+  created_at: Date.new(2021, 11, 29)
+},
+{
+  sneezing: 0,
+  congestion: 1,
+  runny_nose: 1,
+  itchy_nose: 2,
+  user_id: 1,
+  created_at: Date.new(2021, 11, 30)
+},
+{
+  sneezing: 0,
+  congestion: 0,
+  runny_nose: 0,
+  itchy_nose: 1,
+  user_id: 1,
+  created_at: Date.new(2021, 12, 1)
+}
+
+])
+
+allergens = AllergenReport.create([{
+  tree_value: 0,
+  tree_category: "Low",
+  grass_value: 0,
+  grass_category: "Low",
+  ragweed_value: 0,
+  ragweed_category: "Low",
+  mold_value: 0,
+  mold_category: "Low",
+  dust_dander_value: 0,
+  dust_dander_category: "Low",
+  created_at: Date.new(2021, 11, 24),
+  zip_code_id: 1
+},
+  {tree_value: 50,
+  tree_category: "Moderate",
+  grass_value: 50,
+  grass_category: "High",
+  ragweed_value: 50,
+  ragweed_category: "High",
+  mold_value: 5000,
+  mold_category: "Low",
+  dust_dander_value: 3,
+  dust_dander_category: "Moderate",
+  created_at: Date.new(2021, 11, 25),
+  zip_code_id: 1
+},
+  {tree_value: 1500,
+  tree_category: "Very High",
+  grass_value: 250,
+  grass_category: "Very High",
+  ragweed_value: 700,
+  ragweed_category: "Extreme",
+  mold_value: 5,
+  mold_category: "Low",
+  dust_dander_value: 5,
+  dust_dander_category: "High",
+  created_at: Date.new(2021, 11, 26),
+  zip_code_id: 1
+},
+  {tree_value: 50,
+  tree_category: "Moderate",
+  grass_value: 0,
+  grass_category: "Low",
+  ragweed_value: 0,
+  ragweed_category: "Low",
+  mold_value: 0,
+  mold_category: "Low",
+  dust_dander_value: 0,
+  dust_dander_category: "Low",
+  created_at: Date.new(2021, 11, 27),
+  zip_code_id: 1
+},
+  {tree_value: 50,
+  tree_category: "Moderate",
+  grass_value: 0,
+  grass_category: "Low",
+  ragweed_value: 0,
+  ragweed_category: "Low",
+  mold_value: 0,
+  mold_category: "Low",
+  dust_dander_value: 0,
+  dust_dander_category: "Low",
+  created_at: Date.new(2021, 11, 28),
+  zip_code_id: 1
+},
+  {tree_value: 50,
+  tree_category: "Moderate",
+  grass_value: 0,
+  grass_category: "Low",
+  ragweed_value: 0,
+  ragweed_category: "Low",
+  mold_value: 0,
+  mold_category: "Low",
+  dust_dander_value: 0,
+  dust_dander_category: "Low",
+  created_at: Date.new(2021, 11, 29),
+  zip_code_id: 1
+},
+  {tree_value: 50,
+  tree_category: "Moderate",
+  grass_value: 0,
+  grass_category: "Low",
+  ragweed_value: 0,
+  ragweed_category: "Low",
+  mold_value: 0,
+  mold_category: "Low",
+  dust_dander_value: 0,
+  dust_dander_category: "Low",
+  created_at: Date.new(2021, 11, 30),
+  zip_code_id: 1
+},
+  {tree_value: 50,
+  tree_category: "Moderate",
+  grass_value: 0,
+  grass_category: "Low",
+  ragweed_value: 0,
+  ragweed_category: "Low",
+  mold_value: 0,
+  mold_category: "Low",
+  dust_dander_value: 0,
+  dust_dander_category: "Low",
+  created_at: Date.new(2021, 12, 1),
+  zip_code_id: 1
+}
 ])

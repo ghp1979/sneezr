@@ -107,7 +107,7 @@ const SymptomReportForm = props => {
             </select>
           </label>
           <div className="button-group">
-            <button className="button">Submit</button>
+            <button className="button rounded">Submit</button>
           </div>
         </form>
        </div>
