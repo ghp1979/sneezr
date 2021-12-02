@@ -1,26 +1,15 @@
 class Api::V1::SymptomReportsController < ApplicationController
+require_relative '../../../models/assemble_user_data.rb'
   protect_from_forgery unless: -> { request.format.json? }
   before_action :authenticate_user!
   
   def index
-    symptoms = current_user.symptom_reports.all.order(:created_at)
-    dates = []
-    date_reports = []
-    symptoms.each do |report|
-      dates << report.created_at.to_date
-    end
-    allergens = current_user.zip_code.allergen_reports.order(:created_at)
-    allergens.each do |report|
-      dates.each do |date|
-        if report.created_at.to_date === date
-          date_reports << report
-        end
-      end
-    end
+    assemble_user_data(current_user)
+    binding.pry
     data = DataPackage.new
-    data.addDate(dates)
-    data.addTnss(symptoms)
-    data.addAllergens(date_reports)
+    data.addDate(@dates)
+    data.addTnss(@symptoms)
+    data.addAllergens(@date_reports)
     render json: data
   end
 

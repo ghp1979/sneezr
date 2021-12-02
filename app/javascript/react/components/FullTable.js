@@ -51,9 +51,7 @@ const dataHeads = [
       loader={<div>Loading Chart</div>}
       data={[
         dataHeads,
-        ["12/1/21", "10", "1", "Low", "1", "Low", "1", "Low", "1", "Low", 
-        "1", "Low",]
-
+        
       ]}
       options={{
         showRowNumber: false,
