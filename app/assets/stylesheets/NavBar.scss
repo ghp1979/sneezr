@@ -1,3 +1,7 @@
+body{
+  background-color: whitesmoke;
+}
+
 .title-bar{
   background-color: #97F4B3;
   color: black;
@@ -28,4 +32,20 @@
 
 select{
   border-radius: 5rem;
+}
+
+.odd-row{
+  background-color: 97F4E1;
+}
+
+.sign-in{
+  margin: 1rem 2rem 2rem 2rem
+}
+
+.footer{
+  background-color: #97F4B3;
+  text-align: left;
+  font-size: small;
+  padding: .5rem;
+  margin: .5rem
 }

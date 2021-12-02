@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
+import { Chart } from "react-google-charts"
 
 const SymptomReportForm = props => {
 
@@ -62,9 +63,10 @@ const SymptomReportForm = props => {
 
   return(
    <div className="grid-container">
-      <h3>Enter your symptoms<br/>
-      {response}</h3>
-      <div className="cell grid-x margin-x">
+    <h3>Enter your symptoms</h3><br/>
+    <h3>{response}</h3>
+     <div className="grid-x margin-x padding-x">
+      <div className="cell shrink">
         <form onSubmit={handleSubmit}>
           <label>
             Sneezing:
@@ -111,6 +113,28 @@ const SymptomReportForm = props => {
           </div>
         </form>
        </div>
+       <div className="cell shrink small-offset-2">
+        <h4>Total Nasal Symptom Score (TNSS)</h4> 
+        <Chart
+        width={'auto'}
+        height={'auto'}
+        chartType="Table"
+        data={[
+          ["Score", "Symptom Level", "Description"],
+          ["0", "None", "No symptoms"],
+          ["1", "Mild", "Easily tolerated"],
+          ["2", "Moderate", "Noticeable, annoying, but tolerable"],
+          ["3", "Severe", "Intereferes with daily activity"]
+        ]}
+        options={{
+
+          showRowNumber: false,
+        }}
+        rootProps={{ 'data-testid': '1' }}
+        />
+        <p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4419495/">Source</a></p>
+      </div>
+      </div>
      </div>
     )
   }

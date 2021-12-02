@@ -8,8 +8,8 @@ const Options = props =>{
 
 return(
   <div className="grid-container">
-    <div className="grid-x grid-margin-x small-up-2 medium-up-3">
-      <div className="cell">
+    <div className="grid-x grid-margin-x small-up-2 medium-up-3" data-equalizer>
+      <div className="cell" data-equalizer-watch>
         <div className="card">
           <div className="card-divider">
             <h4><Link to="/data">See Your Data</Link></h4>
@@ -20,7 +20,7 @@ return(
           </div>
         </div>
       </div>
-      <div className="cell">
+      <div className="cell" data-equalizer-watch>
         <div className="card">
           <div className="card-divider">
             <h4><Link to="/report">Enter Symptoms</Link></h4>
@@ -31,7 +31,7 @@ return(
           </div>
         </div>
       </div>
-      <div className="cell">
+      <div className="cell" data-equalizer-watch>
         <div className="card">
           <div className="card-divider">
             <h4>Further Information</h4>
