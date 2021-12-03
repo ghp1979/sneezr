@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get "/data", to:"homes#index"
   get "/data/table", to:"homes#index"
   get "/data/symptoms", to:"homes#index"
-
+  get '/' => "homes#index", :as => :user_root
+  
   namespace :api do
     namespace :v1 do
       resources :users, only: [:index]
