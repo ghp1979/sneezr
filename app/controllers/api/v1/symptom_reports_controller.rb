@@ -5,11 +5,11 @@ require_relative '../../../models/assemble_user_data.rb'
   
   def index
     assemble_user_data(current_user)
-    binding.pry
     data = DataPackage.new
     data.addDate(@dates)
     data.addTnss(@symptoms)
     data.addAllergens(@date_reports)
+    binding.pry
     render json: data
   end
 
