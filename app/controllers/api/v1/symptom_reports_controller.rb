@@ -17,6 +17,7 @@ class Api::V1::SymptomReportsController < ApplicationController
         end
       end
     end
+    table = FullTable.new(dates, symptoms, date_reports)
     data = DataPackage.new
     data.addDate(dates)
     data.addTnss(symptoms)
@@ -34,9 +35,10 @@ class Api::V1::SymptomReportsController < ApplicationController
       end
     elsif Date.today === latest.created_at.to_date
       reply ="Report already created for today"
+    elsif report.save
+      reply = "Report added successfully"
     else 
-      errors = report.errors.full_messages.to_sentence
-      render json: { response: errors }
+      reply = report.errors.full_messages.to_sentence
     end
     render json: { response: reply }
   end
