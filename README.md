@@ -1,17 +1,24 @@
-# How to Use Me
+# Sneezr
 
-Assuming you are starting an app that you wish to call `rescue-mission` 
+Sneezr allows the user to submit and store daily allergy symptom reports and then see their symptoms tracked over time in relation to local allergen levels such as pollen, mold, and dust. It uses a React.js frontend with Foundation styling elements and a Ruby on Rails/PostgreSQL backend. In order to limit daily API calls, this implementation is currently limited to a group of ZIP codes in the Boston area.
 
-In your terminal:
+Current version: https://la-sneezr.herokuapp.com/
 
-```
-git clone https://github.com/LaunchAcademy/rails-6-boilerplate
-cd rails-6-boilerplate 
-bundle
-yarn install
-```
+### To Run
+To run locally, run 
+`rails s`
+in the command line and 
+`yarn run dev:client`
+in a separate tab, and navigate to localhost:3000
 
-If you prefer, **you can rename your project with the `mv` command.**
+### Feature to be added
+- More and better visualizations of the data
+- Enhanced user ability to alter and delete symptom reports
+- Allow multiple symptom reports per day.
+- Include links to useful information about allergies
 
-Starting from the directory above your app (likely challenges):
-mv <source_directory> <target_directory>
+### Contributions and Use Guidelines
+Feel free to contact me if you would like to contribute. If your area is not covered by the current implementation, you may with proper attribution run a local version (subject to AccuWeather's terms of use).
+
+### API
+https://developer.accuweather.com/apis
