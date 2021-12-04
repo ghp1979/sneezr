@@ -1,5 +1,5 @@
 desc "Make API Call, Save Data"
-task : do
+task :call_api => :environment do
   daily_report_creator()
 end
 
