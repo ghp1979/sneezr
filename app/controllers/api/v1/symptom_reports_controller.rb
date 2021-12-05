@@ -9,7 +9,6 @@ require_relative '../../../models/assemble_user_data.rb'
     data.addDate(@dates)
     data.addTnss(@symptoms)
     data.addAllergens(@date_reports)
-    binding.pry
     render json: data
   end
 
@@ -19,19 +18,20 @@ require_relative '../../../models/assemble_user_data.rb'
     report.user = current_user  
     if latest === nil
       if report.save
+        binding.pry
         reply = "Report added successfully" 
       end
     elsif Date.today === latest.created_at.to_date
       reply ="Report already created for today"
+    elsif report.save
+      reply = "Report added successfully"
     else 
-      errors = report.errors.full_messages.to_sentence
-      render json: { response: errors }
+      reply = report.errors.full_messages.to_sentence
     end
+    binding.pry
     render json: { response: reply }
   end
-  
-  
-  
+   
   private
 
   def report_params
