@@ -3,13 +3,25 @@ import { useEffect, useState } from "react"
 import { Chart } from "react-google-charts"
 
 const FullTable = props =>{
-  const [dataObject, setDataObject] = useState("{}")
-  const [dataFetched, setDataFetched] = useState(false)
-
+  const [dataObject, setDataObject] = useState([])
+  const dataHeads = [[
+    { type: 'string', label: 'Date' },
+    { type: 'string', label: 'TNSS' },
+    { type: 'string', label: 'Tree Pollen Level' },
+    { type: 'string', label: 'Tree Pollen Intensity'},
+    { type: 'string', label: 'Grass Pollen Level' },
+    { type: 'string', label: 'Grass Pollen Intensity'},
+    { type: 'string', label: 'Ragweed Pollen Level' },
+    { type: 'string', label: 'Ragweed Pollen Intensity'},
+    { type: 'string', label: 'Mold Level' },
+    { type: 'string', label: 'Mold Intensity'},
+    { type: 'string', label: 'Dust and Dander Level' },
+    { type: 'string', label: 'Dust and Dander Intensity'},
+  ]]
   const fetchDataObject = async () => {
     try { 
-      const response = await fetch(`/api/v1/symptom_reports`, {
-        credentials: 'same-origin'
+      const response = await fetch(`/api/v1/full_tables`, {
+        credentials: 'same-origin',
       })
      if(!response.ok) {
       const errorMessage = `${response.status}: (${response.statusText})`
@@ -17,8 +29,8 @@ const FullTable = props =>{
       throw(error)
     }    
     const responseBody = await response.json()
-    setDataObject(responseBody)
-    setDataFetched(true)
+    debugger
+    setDataObject(responseBody)    
     } catch(err) {
     console.log(err)
     }
@@ -26,22 +38,10 @@ const FullTable = props =>{
   useEffect(() => {
     fetchDataObject()
   }, [])
+  
+  let dataTable = dataHeads.concat(dataObject)
 
-
-const dataHeads = [
-  { type: 'string', label: 'Date' },
-  { type: 'string', label: 'TNSS' },
-  { type: 'string', label: 'Tree Pollen Level' },
-  { type: 'string', label: 'Tree Pollen Intensity'},
-  { type: 'string', label: 'Grass Pollen Level' },
-  { type: 'string', label: 'Grass Pollen Intensity'},
-  { type: 'string', label: 'Ragweed Pollen Level' },
-  { type: 'string', label: 'Ragweed Pollen Intensity'},
-  { type: 'string', label: 'Mold Level' },
-  { type: 'string', label: 'Mold Intensity'},
-  { type: 'string', label: 'Dust and Dander Level' },
-  { type: 'string', label: 'Dust and Dander Intensity'},
-]
+debugger
   return(
     <div>
       <Chart
@@ -49,14 +49,12 @@ const dataHeads = [
       height={'auto'}
       chartType="Table"
       loader={<div>Loading Chart</div>}
-      data={[
-        dataHeads,
-        ["12/1/21", "10", "1", "Low", "1", "Low", "1", "Low", "1", "Low", 
-        "1", "Low",]
-
-      ]}
+      data={
+        dataTable
+       }
       options={{
         showRowNumber: false,
+        frozenColumns: 2
       }}
       rootProps={{ 'data-testid': '1' }}
     />

@@ -1,26 +1,14 @@
 class Api::V1::SymptomReportsController < ApplicationController
+require_relative '../../../models/assemble_user_data.rb'
   protect_from_forgery unless: -> { request.format.json? }
   before_action :authenticate_user!
   
   def index
-    symptoms = current_user.symptom_reports.all.order(:created_at)
-    dates = []
-    date_reports = []
-    symptoms.each do |report|
-      dates << report.created_at.to_date
-    end
-    allergens = current_user.zip_code.allergen_reports.order(:created_at)
-    allergens.each do |report|
-      dates.each do |date|
-        if report.created_at.to_date === date
-          date_reports << report
-        end
-      end
-    end
+    assemble_user_data(current_user)
     data = DataPackage.new
-    data.addDate(dates)
-    data.addTnss(symptoms)
-    data.addAllergens(date_reports)
+    data.addDate(@dates)
+    data.addTnss(@symptoms)
+    data.addAllergens(@date_reports)
     render json: data
   end
 
@@ -30,19 +18,20 @@ class Api::V1::SymptomReportsController < ApplicationController
     report.user = current_user  
     if latest === nil
       if report.save
+        binding.pry
         reply = "Report added successfully" 
       end
     elsif Date.today === latest.created_at.to_date
       reply ="Report already created for today"
+    elsif report.save
+      reply = "Report added successfully"
     else 
-      errors = report.errors.full_messages.to_sentence
-      render json: { response: errors }
+      reply = report.errors.full_messages.to_sentence
     end
+    binding.pry
     render json: { response: reply }
   end
-  
-  
-  
+   
   private
 
   def report_params

@@ -34,7 +34,7 @@ return(
       <div className="cell" data-equalizer-watch>
         <div className="card">
           <div className="card-divider">
-            <h4>Further Information</h4>
+            <h4><Link to="/info">Further Information</Link></h4>
           </div>
           <img src={Folder}/>
           <div className="card-section">
