@@ -9,5 +9,3 @@ def daily_report_creator
     create_allergen_report_record(zip_code.zip_code)
   end
 end
-
-daily_report_creator()
