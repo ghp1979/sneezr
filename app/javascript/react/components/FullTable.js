@@ -29,7 +29,6 @@ const FullTable = props =>{
       throw(error)
     }    
     const responseBody = await response.json()
-    debugger
     setDataObject(responseBody)    
     } catch(err) {
     console.log(err)
@@ -41,7 +40,6 @@ const FullTable = props =>{
   
   let dataTable = dataHeads.concat(dataObject)
 
-debugger
   return(
     <div>
       <Chart

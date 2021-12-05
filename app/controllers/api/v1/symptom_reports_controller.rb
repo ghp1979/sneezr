@@ -18,7 +18,6 @@ require_relative '../../../models/assemble_user_data.rb'
     report.user = current_user  
     if latest === nil
       if report.save
-        binding.pry
         reply = "Report added successfully" 
       end
     elsif Date.today === latest.created_at.to_date
@@ -28,7 +27,6 @@ require_relative '../../../models/assemble_user_data.rb'
     else 
       reply = report.errors.full_messages.to_sentence
     end
-    binding.pry
     render json: { response: reply }
   end
    
