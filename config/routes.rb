@@ -16,4 +16,3 @@ Rails.application.routes.draw do
       resources :allergen_reports
     end
   end
-
