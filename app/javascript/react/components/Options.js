@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import New from '../../../assets/images/new.png'
+import New from '../../../assets/images/new1.png'
 import Show from '../../../assets/images/show.jpeg'
 import Folder from '../../../assets/images/folder.png'
 
