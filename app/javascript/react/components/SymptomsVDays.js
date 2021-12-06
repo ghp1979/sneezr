@@ -52,7 +52,8 @@ const SymptomsVDays = props => {
     if((dataFetched == true) && (chartData[0] === "chart")){
       prepareData(dataObject)
     }
-
+    debugger
+if(chartData[0] !== "Chart"){
 return(  
 <Chart
   width={'100%'}
@@ -72,6 +73,6 @@ return(
   }
   rootProps={{ 'data-testid': '1' }}
 />
-  );
+  );}
 };
 export default SymptomsVDays;
