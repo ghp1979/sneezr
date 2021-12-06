@@ -40,6 +40,7 @@ const FullTable = props =>{
   
   let dataTable = dataHeads.concat(dataObject)
 
+  if(dataTable){
   return(
     <div>
       <Chart
@@ -57,6 +58,6 @@ const FullTable = props =>{
       rootProps={{ 'data-testid': '1' }}
     />
   </div>
-  )
+  )}
 }
 export default FullTable
