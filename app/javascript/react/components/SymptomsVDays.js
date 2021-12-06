@@ -52,7 +52,7 @@ const SymptomsVDays = props => {
     if((dataFetched == true) && (chartData[0] === "chart")){
       prepareData(dataObject)
     }
-    debugger
+
 if(chartData[0] !== "Chart"){
 return(  
 <Chart
