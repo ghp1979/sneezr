@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 
 const SymptomsVDays = props => {
-  const [chartData, setChartData] = useState(["chart"])
-  const [dataObject, setDataObject] = useState({})
+  const [dataObject, setDataObject] = useState([])
   const [dataFetched, setDataFetched] = useState(false)
 
   const fetchDataObject = async () => {
@@ -18,61 +17,39 @@ const SymptomsVDays = props => {
       throw(error)
     }    
     const responseBody = await response.json()
+    debugger
     setDataObject(responseBody)
     setDataFetched(true)
     } catch(err) {
     console.log(err)
     }
   }
-
+  const dataHeads = [["Date", "TNSS"]]
   useEffect(() => {
     fetchDataObject()
   }, [])
 
-  const prepareData = (sData) =>{
-    const days = sData["date"]
-    const tnss = sData["tnss"]
-    let mappedData = days.map((date) =>{
-      return [date, ""]
-    })
-    let i = 0
-    mappedData.forEach((array) =>{
-      if(i < mappedData.length){
-        array[1] = tnss[i]
-        i += 1
-      } else if(i = mappedData.length){
-      } else {
-        return(mappedData)
-      }
-    })
-    mappedData.unshift(["Date", "TNSS"])
-    setChartData(mappedData)
-  }
-
-    if((dataFetched == true) && (chartData[0] === "chart")){
-      prepareData(dataObject)
+  let dataTable = dataHeads.concat(dataObject)
+  if(dataTable){
+  return(  
+  <Chart
+    width={'100%'}
+    height={'75%'}
+    chartType="ScatterChart"
+    loader={<div>Loading Chart</div>}
+    data={dataTable}
+    options={{
+      chart: {
+        title:
+          'Total Nasal Symptom Score',
+          title: 'Age vs. Weight comparison',
+          hAxis: { title: 'Date' },
+          vAxis: { title: 'TNSS', minValue: 0, maxValue: 12 },
+          legend: 'none',
+        }}
     }
-
-if(chartData[0] !== "Chart"){
-return(  
-<Chart
-  width={'100%'}
-  height={'75%'}
-  chartType="ScatterChart"
-  loader={<div>Loading Chart</div>}
-  data={chartData}
-  options={{
-    chart: {
-      title:
-        'Total Nasal Symptom Score',
-        title: 'Age vs. Weight comparison',
-        hAxis: { title: 'Date' },
-        vAxis: { title: 'TNSS', minValue: 0, maxValue: 12 },
-        legend: 'none',
-      }}
+    rootProps={{ 'data-testid': '1' }}
+  />)
+    }
   }
-  rootProps={{ 'data-testid': '1' }}
-/>
-  );}
-};
 export default SymptomsVDays;
