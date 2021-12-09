@@ -1,15 +1,13 @@
 class Api::V1::SymptomReportsController < ApplicationController
 require_relative '../../../models/assemble_user_data.rb'
+require_relative '../../../models/arrange_symptoms_v_date.rb'
   protect_from_forgery unless: -> { request.format.json? }
   before_action :authenticate_user!
   
   def index
     assemble_user_data(current_user)
-    data = DataPackage.new
-    data.addDate(@dates)
-    data.addTnss(@symptoms)
-    data.addAllergens(@date_reports)
-    render json: data
+    arrange_symptoms_v_date(@dates, @symptoms)
+    render json: @package
   end
 
   def create
