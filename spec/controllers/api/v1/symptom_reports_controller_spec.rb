@@ -32,4 +32,65 @@ RSpec.describe Api::V1::SymptomReportsController, type: :controller do
     expect(returned_json[2][1]).to eq tnss3
     end
   end
+
+  describe "POST#create" do
+    it "creates a new symptom report" do
+      zip = FactoryBot.create(:zip_code)
+      user = FactoryBot.create(:user, zip_code_id: zip.id)
+      sign_in user
+      post_json = {
+        report: {
+          sneezing: 1,
+          congestion: 2,
+          runny_nose: 0,
+          itchy_nose: 1
+        }
+      }
+      post(:create, params: post_json, format: :json)
+      returned_json = JSON.parse(response.body)
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json; charset=utf-8")
+      expect(returned_json["response"]).to eq "Report added successfully"
+    end
+
+    it "returns an error if the user is not signed in" do
+      post_json = {
+        report: {
+          sneezing: 1,
+          congestion: 2,
+          runny_nose: 0,
+          itchy_nose: 1
+        }
+      }
+      post(:create, params: post_json, format: :json)
+      returned_json = JSON.parse(response.body)
+
+      expect(response.status).to eq 401
+      expect(response.content_type).to eq("application/json; charset=utf-8")
+      expect(returned_json["error"]).to eq "You need to sign in or sign up before continuing."
+    end
+
+    it "informs the user if a report has already been created" do
+      zip = FactoryBot.create(:zip_code)
+      user = FactoryBot.create(:user, zip_code_id: zip.id)
+      sign_in user
+      post_json = {
+        report: {
+          sneezing: 1,
+          congestion: 2,
+          runny_nose: 0,
+          itchy_nose: 1
+        }
+      }
+
+      post(:create, params: post_json, format: :json)
+      post(:create, params: post_json, format: :json)
+      returned_json = JSON.parse(response.body)
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json; charset=utf-8")
+      expect(returned_json["response"]).to eq "Report already created for today"
+    end
+  end
 end
